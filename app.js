@@ -4,20 +4,17 @@ const { v4 } = require('uuid')
 
 const app = express();
 
-let CONTACTS = [
-    {id: v4(), name: 'Bogdan', value: '+380991428123', marked: false}
-];
+let CONTACTS = [];
 
 app.use(express.json());
 
 app.get('/api/contacts', (req, res) => {    
-        res.status(200).json(CONTACTS);
+    res.status(200).json(CONTACTS);
 });
 
 app.post('/api/contacts', (req, res) => {
     const contact = {...req.body, id: v4(), marked: false};
-    CONTACTS.push(contact);
-    
+    CONTACTS.push(contact);   
     res.status(201).json(contact);
 });
 
